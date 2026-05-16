@@ -20,36 +20,39 @@
   }
 
   ::selection {
-    @apply bg-primary/30 text-foreground;
+    @apply bg-primary/20 text-foreground;
   }
 
-  /* Focus visible for keyboard navigation */
+  /* Keyboard-only focus ring — calm and minimal */
   :focus-visible {
-    @apply outline-none ring-2 ring-primary/50 ring-offset-2 ring-offset-background rounded-md;
+    @apply outline-none ring-1 ring-primary/40 ring-offset-1 ring-offset-background;
   }
 
-  /* Scrollbar styling */
+  /* Scrollbar — near invisible until hovered */
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-transparent;
+    background: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-border rounded-full;
+    @apply bg-border-subtle rounded-full;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-muted;
+    @apply bg-border;
   }
 
-  /* Firefox scrollbar */
   * {
     scrollbar-width: thin;
-    scrollbar-color: theme("colors.border") transparent;
+    scrollbar-color: transparent transparent;
+  }
+
+  *:hover {
+    scrollbar-color: theme("colors.border-subtle") transparent;
   }
 }
 
@@ -85,7 +88,6 @@
     overflow: hidden;
   }
 
-  /* Touch-friendly min size */
   .touch-target {
     min-height: 44px;
     min-width: 44px;

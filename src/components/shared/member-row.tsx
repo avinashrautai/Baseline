@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { Avatar } from "@/components/ui/avatar";
 import { StatusDot } from "@/components/ui/status-dot";
 import { User } from "@/types";
-import { ChevronRight } from "lucide-react";
 
 interface MemberRowProps {
   user: User;
@@ -27,15 +26,14 @@ export function MemberRow({
   return (
     <div
       className={cn(
-        "flex items-center gap-3 px-3 py-3 rounded-xl transition-colors duration-100",
-        onClick && "hover:bg-layer/50 active:bg-layer cursor-pointer",
+        "flex items-center gap-3 px-3 py-3 rounded-lg transition-colors duration-100",
+        onClick && "hover:bg-layer/30 cursor-pointer",
         className
       )}
       onClick={onClick}
     >
-      {/* Avatar with status */}
       <div className="relative flex-shrink-0">
-        <Avatar fallback={user.initials} size="md" />
+        <Avatar fallback={user.initials} size="sm" />
         {showStatus && (
           <StatusDot
             status={user.status}
@@ -44,19 +42,12 @@ export function MemberRow({
         )}
       </div>
 
-      {/* Info */}
       <div className="flex-1 min-w-0">
-        <p className="text-body font-medium text-foreground truncate">
-          {user.name}
-        </p>
-        <p className="text-body-sm text-muted truncate">{user.role}</p>
+        <p className="text-body text-foreground truncate">{user.name}</p>
+        <p className="text-caption text-muted truncate">{user.role}</p>
       </div>
 
-      {/* Trailing */}
       {trailing && <div className="flex-shrink-0">{trailing}</div>}
-      {showChevron && (
-        <ChevronRight className="h-4 w-4 text-muted/50 flex-shrink-0" />
-      )}
     </div>
   );
 }

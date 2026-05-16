@@ -17,8 +17,8 @@ export function MobileNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-40 bg-surface/95 backdrop-blur-md border-t border-border-subtle safe-bottom md:hidden">
-      <div className="flex items-center justify-around h-16 px-2">
+    <nav className="fixed bottom-0 inset-x-0 z-40 bg-background/90 backdrop-blur-lg safe-bottom md:hidden">
+      <div className="flex items-center justify-around h-14 px-4">
         {navItems.map((item) => {
           const isActive = pathname === item.href || pathname?.startsWith(item.href + "/");
           const Icon = item.icon;
@@ -27,16 +27,12 @@ export function MobileNav() {
               key={item.label}
               href={item.href}
               className={cn(
-                "flex flex-col items-center justify-center gap-0.5 w-16 h-full transition-colors duration-150 relative",
-                isActive ? "text-foreground" : "text-muted"
+                "flex flex-col items-center justify-center gap-1 w-14 h-full transition-colors duration-150",
+                isActive ? "text-foreground" : "text-muted/60"
               )}
             >
-              {/* Active indicator */}
-              {isActive && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-primary" />
-              )}
-              <Icon className="h-5 w-5" strokeWidth={isActive ? 2 : 1.5} />
-              <span className="text-[10px] font-medium leading-tight">{item.label}</span>
+              <Icon className="h-[18px] w-[18px]" strokeWidth={isActive ? 1.8 : 1.5} />
+              <span className="text-[10px] leading-none">{item.label}</span>
             </Link>
           );
         })}

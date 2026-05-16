@@ -17,11 +17,11 @@ export function SectionHeader({
   className,
 }: SectionHeaderProps) {
   return (
-    <div className={cn("flex items-center justify-between", className)}>
+    <div className={cn("flex items-baseline justify-between", className)}>
       <div>
-        <h2 className="text-heading-3 text-foreground">{title}</h2>
+        <h2 className="text-body font-medium text-foreground">{title}</h2>
         {subtitle && (
-          <p className="text-body-sm text-muted mt-0.5">{subtitle}</p>
+          <p className="text-caption text-muted mt-0.5">{subtitle}</p>
         )}
       </div>
       {action && <div>{action}</div>}

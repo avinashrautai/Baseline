@@ -19,19 +19,19 @@ export function ActivityItem({ activity, compact = false, className }: ActivityI
   if (!user) return null;
 
   return (
-    <div className={cn("flex items-start gap-3", compact ? "py-2.5" : "py-3.5", className)}>
+    <div className={cn("flex items-start gap-3", compact ? "py-2.5" : "py-3", className)}>
       <Avatar
         fallback={user.initials}
-        size={compact ? "sm" : "md"}
+        size="sm"
         className="flex-shrink-0 mt-0.5"
       />
       <div className="flex-1 min-w-0">
-        <p className={cn("text-foreground", compact ? "text-body-sm" : "text-body")}>
+        <p className="text-body-sm text-foreground leading-relaxed">
           <span className="font-medium">{user.name}</span>{" "}
           <span className="text-muted">{activity.action}</span>{" "}
-          <span className="font-medium">{activity.target}</span>
+          <span className="text-foreground">{activity.target}</span>
         </p>
-        <p className="text-caption text-muted mt-0.5">
+        <p className="text-caption text-muted/60 mt-0.5">
           {formatRelativeTime(activity.timestamp)}
         </p>
       </div>

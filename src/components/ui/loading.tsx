@@ -10,15 +10,15 @@ interface LoadingSpinnerProps {
 
 export function LoadingSpinner({ size = "md", className }: LoadingSpinnerProps) {
   const sizes = {
-    sm: "h-4 w-4",
-    md: "h-6 w-6",
-    lg: "h-8 w-8",
+    sm: "h-4 w-4 border-[1.5px]",
+    md: "h-5 w-5 border-[1.5px]",
+    lg: "h-7 w-7 border-2",
   };
 
   return (
     <div
       className={cn(
-        "animate-spin rounded-full border-2 border-border border-t-primary",
+        "animate-spin rounded-full border-muted/20 border-t-primary/70",
         sizes[size],
         className
       )}
@@ -30,11 +30,13 @@ interface LoadingScreenProps {
   message?: string;
 }
 
-export function LoadingScreen({ message = "Loading..." }: LoadingScreenProps) {
+export function LoadingScreen({ message }: LoadingScreenProps) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[300px] gap-4">
+    <div className="flex flex-col items-center justify-center min-h-[240px] gap-5">
       <LoadingSpinner size="lg" />
-      <p className="text-body-sm text-muted">{message}</p>
+      {message && (
+        <p className="text-body-sm text-muted/70">{message}</p>
+      )}
     </div>
   );
 }
@@ -47,7 +49,7 @@ export function Skeleton({ className }: SkeletonProps) {
   return (
     <div
       className={cn(
-        "rounded-lg bg-layer animate-pulse",
+        "rounded-md bg-layer/50 animate-pulse",
         className
       )}
     />
@@ -56,27 +58,27 @@ export function Skeleton({ className }: SkeletonProps) {
 
 export function CardSkeleton() {
   return (
-    <div className="bg-surface border border-border-subtle rounded-xl p-4 space-y-3">
-      <Skeleton className="h-4 w-2/3" />
+    <div className="rounded-xl bg-surface border border-border-subtle p-5 space-y-4">
+      <Skeleton className="h-4 w-3/5" />
       <Skeleton className="h-3 w-full" />
       <Skeleton className="h-3 w-4/5" />
-      <div className="flex gap-2 pt-2">
-        <Skeleton className="h-6 w-16 rounded-md" />
-        <Skeleton className="h-6 w-20 rounded-md" />
+      <div className="flex gap-2 pt-1">
+        <Skeleton className="h-5 w-14 rounded-md" />
+        <Skeleton className="h-5 w-18 rounded-md" />
       </div>
     </div>
   );
 }
 
-export function ListSkeleton({ rows = 4 }: { rows?: number }) {
+export function ListSkeleton({ rows = 3 }: { rows?: number }) {
   return (
-    <div className="space-y-2">
+    <div className="space-y-1">
       {Array.from({ length: rows }).map((_, i) => (
-        <div key={i} className="flex items-center gap-3 px-4 py-3">
-          <Skeleton className="h-9 w-9 rounded-lg" />
+        <div key={i} className="flex items-center gap-3 px-3 py-3.5">
+          <Skeleton className="h-8 w-8 rounded-lg" />
           <div className="flex-1 space-y-2">
-            <Skeleton className="h-4 w-1/3" />
-            <Skeleton className="h-3 w-1/2" />
+            <Skeleton className="h-3.5 w-2/5" />
+            <Skeleton className="h-3 w-3/5" />
           </div>
         </div>
       ))}
