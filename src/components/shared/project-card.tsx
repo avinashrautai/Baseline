@@ -51,7 +51,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
             value={project.progress}
             size="sm"
             showLabel
-            color={project.progress >= 80 ? "success" : "primary"}
+            variant={project.progress >= 80 ? "success" : "primary"}
           />
 
           {/* Footer */}

@@ -1,5 +1,5 @@
 export { Button, buttonVariants } from "./button";
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, AnimatedCard } from "./card";
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./card";
 export { Input } from "./input";
 export { Textarea } from "./textarea";
 export { Tabs, TabsList, TabsTrigger, TabsContent } from "./tabs";
@@ -29,7 +29,6 @@ export { SectionHeader } from "./section-header";
 export { ListItem } from "./list-item";
 export { Badge } from "./badge";
 export { Avatar } from "./avatar";
-export { IconButton, iconButtonVariants } from "./icon-button";
 export { Tooltip } from "./tooltip";
 export { Chip } from "./chip";
 export { StatusDot } from "./status-dot";

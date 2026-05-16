@@ -22,7 +22,7 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
             "w-full pl-10 pr-10 py-2.5 text-body text-foreground placeholder:text-muted/50 transition-colors duration-150",
             "focus:outline-none",
             variant === "default" && [
-              "rounded-xl bg-layer/40",
+              "rounded-lg bg-layer/40",
               "focus:bg-layer/60",
             ],
             variant === "minimal" && [

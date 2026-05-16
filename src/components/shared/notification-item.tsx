@@ -23,7 +23,7 @@ export function NotificationItem({ notification, className }: NotificationItemPr
   return (
     <div
       className={cn(
-        "flex items-start gap-3 px-3 py-3 rounded-xl transition-colors duration-100 cursor-pointer",
+        "flex items-start gap-3 px-3 py-3 rounded-lg transition-colors duration-100 cursor-pointer",
         "hover:bg-layer/50 active:bg-layer",
         !notification.read && "bg-primary/5",
         className

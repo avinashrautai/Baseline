@@ -93,7 +93,7 @@ export default function DetailPage() {
             value={project.progress}
             size="md"
             showLabel
-            color={project.progress >= 80 ? "success" : "primary"}
+            variant={project.progress >= 80 ? "success" : "primary"}
           />
         </div>
 

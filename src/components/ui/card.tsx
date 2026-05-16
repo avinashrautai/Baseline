@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: "default" | "elevated" | "interactive" | "subtle";
@@ -98,6 +97,4 @@ const CardFooter = React.forwardRef<
 ));
 CardFooter.displayName = "CardFooter";
 
-const AnimatedCard = motion(Card);
-
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, AnimatedCard };
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter };

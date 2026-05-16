@@ -8,7 +8,7 @@ interface ProgressBarProps {
   value: number;
   max?: number;
   size?: "sm" | "md" | "lg";
-  color?: "primary" | "accent" | "success" | "warning" | "danger";
+  variant?: "primary" | "accent" | "success" | "warning" | "danger";
   animated?: boolean;
   showLabel?: boolean;
   className?: string;
@@ -18,7 +18,7 @@ export function ProgressBar({
   value,
   max = 100,
   size = "md",
-  color = "primary",
+  variant = "primary",
   animated = true,
   showLabel = false,
   className,
@@ -31,7 +31,7 @@ export function ProgressBar({
     lg: "h-2.5",
   };
 
-  const colors = {
+  const variants = {
     primary: "bg-primary",
     accent: "bg-accent",
     success: "bg-success",
@@ -51,8 +51,8 @@ export function ProgressBar({
       )}
       <div className={cn("w-full bg-layer rounded-full overflow-hidden", sizes[size])}>
         <motion.div
-          className={cn("h-full rounded-full", colors[color])}
-          initial={animated ? { width: 0 } : undefined}
+          className={cn("h-full rounded-full", variants[variant])}
+          initial={animated ? { width: 0 } : { width: `${percentage}%` }}
           animate={{ width: `${percentage}%` }}
           transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1.0] }}
         />

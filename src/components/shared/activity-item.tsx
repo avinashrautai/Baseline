@@ -19,7 +19,7 @@ export function ActivityItem({ activity, compact = false, className }: ActivityI
   if (!user) return null;
 
   return (
-    <div className={cn("flex items-start gap-3", compact ? "py-2.5" : "py-3", className)}>
+    <div className={cn("flex items-start gap-3 px-3", compact ? "py-2.5" : "py-3", className)}>
       <Avatar
         fallback={user.initials}
         size="sm"

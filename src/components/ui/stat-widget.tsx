@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { Card } from "./card";
 
 interface StatWidgetProps {
   label: string;
@@ -21,17 +22,12 @@ export function StatWidget({
   className,
 }: StatWidgetProps) {
   return (
-    <div
-      className={cn(
-        "bg-surface border border-border-subtle rounded-xl p-4",
-        className
-      )}
-    >
+    <Card variant="default" padding="sm" className={className}>
       <div className="flex items-start justify-between mb-2">
         <span className="text-caption text-muted uppercase tracking-wider">
           {label}
         </span>
-        {icon && <span className="text-muted">{icon}</span>}
+        {icon && <span className="text-muted/60">{icon}</span>}
       </div>
       <div className="flex items-end gap-2">
         <span className="text-heading-1 text-foreground tabular-nums">
@@ -50,6 +46,6 @@ export function StatWidget({
           </span>
         )}
       </div>
-    </div>
+    </Card>
   );
 }
