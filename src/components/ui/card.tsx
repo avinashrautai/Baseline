@@ -12,9 +12,9 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant = "default", padding = "md", children, ...props }, ref) => {
     const variants = {
       default: "bg-surface border border-border-subtle",
-      elevated: "bg-surface shadow-card",
-      interactive: "bg-surface border border-border-subtle hover:border-border/50 transition-colors duration-200 cursor-pointer active:scale-[0.985]",
-      subtle: "bg-layer/40",
+      elevated: "bg-surface shadow-card border border-border-subtle",
+      interactive: "bg-surface border border-border-subtle hover:bg-[#1e1e1e] hover:border-border/60 transition-all duration-200 cursor-pointer active:scale-[0.985]",
+      subtle: "bg-layer/30",
     };
 
     const paddings = {

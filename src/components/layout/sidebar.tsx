@@ -29,7 +29,7 @@ export function Sidebar() {
     : "?";
 
   return (
-    <aside className="hidden md:flex md:flex-col md:w-60 lg:w-64 h-screen sticky top-0 bg-surface/50 border-r border-border-subtle">
+    <aside className="hidden md:flex md:flex-col md:w-60 lg:w-64 h-screen sticky top-0 bg-sidebar border-r border-border-subtle">
       {/* Header */}
       <div className="flex items-center px-5 h-14">
         <Link href="/dashboard" className="flex items-center gap-2.5">
