@@ -9,8 +9,6 @@ import { User } from "@/types";
 interface MemberRowProps {
   user: User;
   showStatus?: boolean;
-  showChevron?: boolean;
-  trailing?: React.ReactNode;
   className?: string;
   onClick?: () => void;
 }
@@ -18,8 +16,6 @@ interface MemberRowProps {
 export function MemberRow({
   user,
   showStatus = true,
-  showChevron = false,
-  trailing,
   className,
   onClick,
 }: MemberRowProps) {
@@ -47,7 +43,6 @@ export function MemberRow({
         <p className="text-caption text-muted truncate">{user.role}</p>
       </div>
 
-      {trailing && <div className="flex-shrink-0">{trailing}</div>}
     </div>
   );
 }

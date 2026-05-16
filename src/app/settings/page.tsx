@@ -38,7 +38,7 @@ export default function SettingsPage() {
         subtitle="Manage your account and preferences."
       />
 
-      <div className="px-5 md:px-8 space-y-12 pb-12">
+      <div className="px-5 md:px-8 md:max-w-2xl space-y-12 pb-12">
         {/* Profile */}
         <section>
           <SectionHeader title="Profile" className="mb-4" />

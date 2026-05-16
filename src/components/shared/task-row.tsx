@@ -9,11 +9,10 @@ import { CheckCircle2, Circle, Clock } from "lucide-react";
 
 interface TaskRowProps {
   task: Task;
-  showProject?: boolean;
   className?: string;
 }
 
-export function TaskRow({ task, showProject = false, className }: TaskRowProps) {
+export function TaskRow({ task, className }: TaskRowProps) {
   const assignee = task.assigneeId ? getUserById(task.assigneeId) : undefined;
 
   const statusIcon = {

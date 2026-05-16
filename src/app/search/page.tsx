@@ -8,11 +8,9 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { ProjectCard } from "@/components/shared/project-card";
 import { MemberRow } from "@/components/shared/member-row";
 import { projects, users, tasks } from "@/data";
-import { getStatusLabel } from "@/lib/format";
 import {
   Search,
   Clock,
-  Folder,
   FileText,
 } from "lucide-react";
 import Link from "next/link";
