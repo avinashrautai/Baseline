@@ -30,7 +30,7 @@ export function StatWidget({
         {icon && <span className="text-muted/60">{icon}</span>}
       </div>
       <div className="flex items-end gap-2">
-        <span className="text-heading-1 text-foreground tabular-nums">
+        <span className="text-heading-2 text-foreground tabular-nums">
           {value}
         </span>
         {change && (

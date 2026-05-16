@@ -23,9 +23,9 @@
     @apply bg-primary/20 text-foreground;
   }
 
-  /* Keyboard-only focus ring — calm and minimal */
+  /* Keyboard-only focus ring */
   :focus-visible {
-    @apply outline-none ring-1 ring-primary/40 ring-offset-1 ring-offset-background;
+    @apply outline-none ring-1 ring-primary/30 ring-offset-1 ring-offset-background;
   }
 
   /* Scrollbar — near invisible until hovered */

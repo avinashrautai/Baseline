@@ -28,7 +28,7 @@ export function MobileNav() {
               href={item.href}
               className={cn(
                 "flex flex-col items-center justify-center gap-1 w-14 h-full transition-colors duration-150",
-                isActive ? "text-foreground" : "text-muted/60"
+                isActive ? "text-foreground" : "text-muted/50"
               )}
             >
               <Icon className="h-[18px] w-[18px]" strokeWidth={isActive ? 1.8 : 1.5} />

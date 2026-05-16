@@ -25,7 +25,7 @@ export function TaskRow({ task, className }: TaskRowProps) {
   return (
     <div
       className={cn(
-        "flex items-center gap-3 px-3 py-3 rounded-lg transition-colors duration-100",
+        "flex items-center gap-3 px-3 py-3 rounded-lg transition-colors duration-150",
         "hover:bg-layer/30 cursor-pointer",
         task.status === "done" && "opacity-50",
         className
