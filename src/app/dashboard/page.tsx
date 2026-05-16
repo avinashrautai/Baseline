@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { PageHeader } from "@/components/layout/page-header";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ProgressBar } from "@/components/ui/progress-bar";
 import { ProjectCard } from "@/components/shared/project-card";
@@ -19,7 +18,6 @@ import {
 } from "@/data";
 import { getGreeting, formatDate } from "@/lib/format";
 import {
-  Plus,
   ArrowRight,
   Calendar,
 } from "lucide-react";

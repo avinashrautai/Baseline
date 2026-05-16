@@ -87,7 +87,7 @@ export function Sidebar() {
             "flex items-center gap-2.5 px-3 py-2 rounded-lg text-body-sm transition-colors duration-150",
             pathname === "/settings"
               ? "text-foreground bg-layer/40"
-              : "text-muted hover:text-foreground hover:bg-layer/30"
+              : "text-muted hover:text-foreground hover:bg-layer/20"
           )}
         >
           <Settings className="h-4 w-4" strokeWidth={1.5} />

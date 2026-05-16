@@ -116,7 +116,7 @@ export default function SearchPage() {
                   <div
                     key={search}
                     onClick={() => setQuery(search)}
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer hover:bg-layer/30 transition-colors"
+                    className="flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer hover:bg-layer/20 transition-colors"
                   >
                     <Clock className="h-3.5 w-3.5 text-muted/40" />
                     <span className="text-body-sm text-foreground">{search}</span>
@@ -174,7 +174,7 @@ export default function SearchPage() {
                   <Card variant="default" padding="sm">
                     <CardContent>
                       {filteredTasks.map((task) => (
-                        <div key={task.id} className="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-layer/30 transition-colors cursor-pointer">
+                        <div key={task.id} className="flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-layer/20 transition-colors cursor-pointer">
                           <FileText className="h-3.5 w-3.5 text-muted/50 flex-shrink-0" />
                           <p className="text-body text-foreground truncate">{task.title}</p>
                         </div>
