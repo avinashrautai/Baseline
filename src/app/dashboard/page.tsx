@@ -17,10 +17,8 @@ import {
   ArrowRight,
   Calendar,
   FolderOpen,
-  Plus,
 } from "lucide-react";
 import Link from "next/link";
-import type { Project, Task } from "@/types/database";
 
 const container = {
   hidden: { opacity: 0 },

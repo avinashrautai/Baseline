@@ -4,7 +4,6 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { FileItem } from "@/types";
 import { getUserById } from "@/data";
-import { formatRelativeTime } from "@/lib/format";
 import { FileText, Image, File, Code } from "lucide-react";
 
 interface FileRowProps {
