@@ -23,7 +23,7 @@ export function MemberRow({
     <div
       className={cn(
         "flex items-center gap-3 px-3 py-3 rounded-lg transition-colors duration-150",
-        onClick && "hover:bg-layer/30 cursor-pointer",
+        onClick && "hover:bg-layer/20 cursor-pointer",
         className
       )}
       onClick={onClick}

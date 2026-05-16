@@ -75,7 +75,7 @@ export default function DashboardPage() {
                   <h2 className="text-heading-2 text-foreground mb-2">
                     {focusProject.name}
                   </h2>
-                  <p className="text-body-sm text-muted/70 leading-relaxed max-w-md mb-8">
+                  <p className="text-body-sm text-muted/70 leading-relaxed max-w-md mb-6">
                     {focusProject.description}
                   </p>
 
@@ -108,13 +108,13 @@ export default function DashboardPage() {
 
         {/* Stats — quiet inline numbers */}
         <motion.section variants={item}>
-          <div className="grid grid-cols-3 lg:grid-cols-3 gap-px bg-border-subtle rounded-xl overflow-hidden">
+          <div className="grid grid-cols-3 gap-3">
             {[
               { label: "Open tasks", value: "48", sub: "7 done today" },
               { label: "Team online", value: "4", sub: "of 6 members" },
               { label: "Sprint velocity", value: "94%", sub: "+12% vs last" },
             ].map((stat) => (
-              <div key={stat.label} className="bg-surface p-4 md:p-5">
+              <div key={stat.label} className="bg-surface border border-border-subtle rounded-xl p-4 md:p-5">
                 <p className="text-caption text-muted/60 mb-1">{stat.label}</p>
                 <p className="text-heading-3 text-foreground tabular-nums">{stat.value}</p>
                 <p className="text-caption text-success mt-1">{stat.sub}</p>

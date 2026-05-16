@@ -27,7 +27,7 @@ export function ListItem({
     <div
       className={cn(
         "flex items-center gap-3 px-3 py-3 rounded-lg transition-colors duration-150 cursor-pointer",
-        "hover:bg-layer/30 active:bg-layer/50",
+        "hover:bg-layer/20 active:bg-layer/35",
         destructive && "hover:bg-danger/5",
         className
       )}

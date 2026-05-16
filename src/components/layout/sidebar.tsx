@@ -43,7 +43,7 @@ export function Sidebar() {
                   "flex items-center gap-2.5 px-3 py-2 rounded-lg text-body-sm transition-colors duration-150",
                   isActive
                     ? "text-foreground bg-layer/40"
-                    : "text-muted hover:text-foreground hover:bg-layer/30"
+                    : "text-muted hover:text-foreground hover:bg-layer/20"
                 )}
               >
                 <Icon className="h-4 w-4" strokeWidth={1.5} />
@@ -66,7 +66,7 @@ export function Sidebar() {
               <Link
                 key={project.id}
                 href={`/detail?id=${project.id}`}
-                className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-body-sm text-muted hover:text-foreground hover:bg-layer/30 transition-colors duration-150"
+                className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-body-sm text-muted hover:text-foreground hover:bg-layer/20 transition-colors duration-150"
               >
                 <div
                   className="w-1.5 h-1.5 rounded-full flex-shrink-0 opacity-60"

@@ -55,11 +55,11 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
           />
 
           {/* Footer */}
-          <div className="flex items-center justify-between mt-5 pt-3.5 border-t border-border-subtle">
-            <span className="text-caption text-muted/70">
+          <div className="flex items-center justify-between mt-5 pt-3.5">
+            <span className="text-caption text-muted/60">
               {project.completedTasks} of {project.taskCount} tasks
             </span>
-            <span className="text-caption text-muted/70">
+            <span className="text-caption text-muted/60">
               {project.members.length} members
             </span>
           </div>

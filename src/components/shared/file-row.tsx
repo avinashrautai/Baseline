@@ -34,7 +34,7 @@ export function FileRow({ file, className }: FileRowProps) {
     <div
       className={cn(
         "flex items-center gap-3 px-3 py-3 rounded-lg transition-colors duration-150",
-        "hover:bg-layer/30 cursor-pointer",
+        "hover:bg-layer/20 cursor-pointer",
         className
       )}
     >
