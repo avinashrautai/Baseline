@@ -13,7 +13,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     const variants = {
       default: "bg-surface border border-border-subtle",
       elevated: "bg-surface shadow-card",
-      interactive: "bg-surface border border-border-subtle hover:bg-surface/80 transition-colors duration-150 cursor-pointer active:scale-[0.995]",
+      interactive: "bg-surface border border-border-subtle hover:border-border/60 transition-all duration-200 ease-out cursor-pointer active:scale-[0.98] active:transition-none",
       subtle: "bg-layer/40",
     };
 

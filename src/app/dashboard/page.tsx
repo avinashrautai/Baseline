@@ -31,13 +31,13 @@ const container = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.04 },
+    transition: { staggerChildren: 0.06, delayChildren: 0.05 },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 6 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.15 } },
+  hidden: { opacity: 0, y: 4 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] } },
 };
 
 export default function DashboardPage() {
@@ -58,7 +58,7 @@ export default function DashboardPage() {
         }
       />
 
-      <div className="px-5 md:px-8 space-y-12 pb-12">
+      <div className="px-5 md:px-8 space-y-14 pb-14">
         {/* Stats */}
         <motion.div variants={item} className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           <StatWidget
@@ -113,7 +113,7 @@ export default function DashboardPage() {
         </motion.section>
 
         {/* Two columns on desktop */}
-        <div className="grid lg:grid-cols-5 gap-10">
+        <div className="grid lg:grid-cols-5 gap-12 lg:gap-10">
           {/* Tasks */}
           <motion.section variants={item} className="lg:col-span-3">
             <SectionHeader

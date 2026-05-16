@@ -64,23 +64,23 @@ export default function OnboardingPage() {
         <AnimatePresence mode="wait">
           <motion.div
             key={step.id}
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="flex flex-col items-center text-center max-w-sm"
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+            className="flex flex-col items-center text-center max-w-xs"
           >
-            <div className="w-12 h-12 rounded-xl bg-layer/50 flex items-center justify-center mb-8">
+            <div className="w-14 h-14 rounded-2xl bg-layer/40 flex items-center justify-center mb-10">
               {React.createElement(step.icon, {
-                className: "h-5 w-5 text-primary",
-                strokeWidth: 1.5,
+                className: "h-6 w-6 text-primary/80",
+                strokeWidth: 1.4,
               })}
             </div>
 
             <h1 className="text-heading-1 text-foreground mb-3">
               {step.title}
             </h1>
-            <p className="text-body text-muted leading-relaxed">
+            <p className="text-body-sm text-muted/80 leading-relaxed">
               {step.description}
             </p>
           </motion.div>
@@ -91,17 +91,17 @@ export default function OnboardingPage() {
       <div className="fixed bottom-0 inset-x-0 bg-background safe-bottom">
         <div className="max-w-sm mx-auto px-8 pb-10 pt-6">
           {/* Progress */}
-          <div className="flex justify-center gap-2 mb-6">
+          <div className="flex justify-center gap-1.5 mb-7">
             {steps.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentStep(index)}
-                className={`h-1 rounded-full transition-all duration-300 ${
+                className={`rounded-full transition-all duration-500 ease-out ${
                   index === currentStep
-                    ? "w-6 bg-primary"
+                    ? "w-5 h-1 bg-primary"
                     : index < currentStep
-                    ? "w-1.5 bg-primary/40"
-                    : "w-1.5 bg-layer"
+                    ? "w-1 h-1 bg-primary/35"
+                    : "w-1 h-1 bg-layer"
                 }`}
               />
             ))}

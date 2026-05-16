@@ -47,11 +47,14 @@ const config: Config = {
         "elevated": "0 4px 16px rgba(0, 0, 0, 0.2), 0 1px 4px rgba(0, 0, 0, 0.1)",
         "modal": "0 12px 40px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.15)",
       },
+      transitionTimingFunction: {
+        "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",
+      },
       animation: {
-        "fade-in": "fadeIn 0.15s ease-out",
-        "slide-up": "slideUp 0.25s ease-out",
-        "slide-down": "slideDown 0.25s ease-out",
-        "scale-in": "scaleIn 0.15s ease-out",
+        "fade-in": "fadeIn 0.2s cubic-bezier(0.25, 0.1, 0.25, 1)",
+        "slide-up": "slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "slide-down": "slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+        "scale-in": "scaleIn 0.2s cubic-bezier(0.25, 0.1, 0.25, 1)",
       },
       keyframes: {
         fadeIn: {
@@ -59,15 +62,15 @@ const config: Config = {
           "100%": { opacity: "1" },
         },
         slideUp: {
-          "0%": { opacity: "0", transform: "translateY(6px)" },
+          "0%": { opacity: "0", transform: "translateY(4px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         slideDown: {
-          "0%": { opacity: "0", transform: "translateY(-6px)" },
+          "0%": { opacity: "0", transform: "translateY(-4px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         scaleIn: {
-          "0%": { opacity: "0", transform: "scale(0.97)" },
+          "0%": { opacity: "0", transform: "scale(0.98)" },
           "100%": { opacity: "1", transform: "scale(1)" },
         },
       },

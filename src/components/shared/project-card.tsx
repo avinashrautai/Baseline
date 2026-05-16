@@ -42,7 +42,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
           </div>
 
           {/* Description */}
-          <p className="text-body-sm text-muted/80 line-clamp-2 mb-5 leading-relaxed">
+          <p className="text-body-sm text-muted/70 line-clamp-2 mb-6 leading-relaxed">
             {project.description}
           </p>
 
@@ -55,11 +55,11 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
           />
 
           {/* Footer */}
-          <div className="flex items-center justify-between mt-4 pt-3 border-t border-border-subtle">
-            <span className="text-caption text-muted">
-              {project.completedTasks} of {project.taskCount}
+          <div className="flex items-center justify-between mt-5 pt-3.5 border-t border-border-subtle">
+            <span className="text-caption text-muted/70">
+              {project.completedTasks} of {project.taskCount} tasks
             </span>
-            <span className="text-caption text-muted">
+            <span className="text-caption text-muted/70">
               {project.members.length} members
             </span>
           </div>
