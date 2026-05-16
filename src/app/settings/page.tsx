@@ -10,13 +10,13 @@ import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Avatar } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { currentUser } from "@/data";
-import { APP_CONFIG } from "@/constants";
+import { LoadingScreen } from "@/components/ui/loading";
+import { useQuery } from "@/hooks/use-query";
+import { getProfile, signOut } from "@/lib/supabase/queries";
+import { useRouter } from "next/navigation";
 import {
   Bell,
   Shield,
-  Palette,
   Globe,
   HelpCircle,
   LogOut,
@@ -27,11 +27,26 @@ import {
 } from "lucide-react";
 
 export default function SettingsPage() {
+  const { data: profile, loading } = useQuery(getProfile, []);
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await signOut();
+    router.push("/login");
+    router.refresh();
+  };
+
+  if (loading) return <LoadingScreen />;
+
+  const initials = profile?.name
+    ? profile.name.split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase()
+    : "?";
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.15 }}
+      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
     >
       <PageHeader
         title="Settings"
@@ -45,20 +60,28 @@ export default function SettingsPage() {
           <Card variant="default" padding="md">
             <CardContent>
               <div className="flex items-center gap-4 mb-6">
-                <Avatar fallback={currentUser.initials} size="lg" />
+                <Avatar
+                  fallback={initials}
+                  src={profile?.avatar_url ?? undefined}
+                  size="lg"
+                />
                 <div className="flex-1 min-w-0">
-                  <p className="text-body font-medium text-foreground">{currentUser.name}</p>
-                  <p className="text-caption text-muted">{currentUser.email}</p>
+                  <p className="text-body font-medium text-foreground">{profile?.name}</p>
+                  <p className="text-caption text-muted">{profile?.email}</p>
                 </div>
               </div>
               <div className="space-y-4">
                 <div>
                   <label className="text-caption text-muted mb-1.5 block">Name</label>
-                  <Input defaultValue={currentUser.name} />
+                  <Input defaultValue={profile?.name ?? ""} />
                 </div>
                 <div>
                   <label className="text-caption text-muted mb-1.5 block">Email</label>
-                  <Input defaultValue={currentUser.email} icon={<Mail className="h-4 w-4" />} />
+                  <Input
+                    defaultValue={profile?.email ?? ""}
+                    icon={<Mail className="h-4 w-4" />}
+                    disabled
+                  />
                 </div>
                 <Button size="sm" className="mt-2">Save</Button>
               </div>
@@ -81,33 +104,8 @@ export default function SettingsPage() {
                 </div>
                 <div className="flex items-center justify-between py-3.5 px-3">
                   <div className="flex items-center gap-3">
-                    <Palette className="h-4 w-4 text-muted/60" />
-                    <span className="text-body text-foreground">Reduced motion</span>
-                  </div>
-                  <Switch />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </section>
-
-        {/* Notifications */}
-        <section>
-          <SectionHeader title="Notifications" className="mb-4" />
-          <Card variant="default" padding="sm">
-            <CardContent>
-              <div className="divide-y divide-border-subtle">
-                <div className="flex items-center justify-between py-3.5 px-3">
-                  <div className="flex items-center gap-3">
                     <Bell className="h-4 w-4 text-muted/60" />
-                    <span className="text-body text-foreground">Push notifications</span>
-                  </div>
-                  <Switch defaultChecked />
-                </div>
-                <div className="flex items-center justify-between py-3.5 px-3">
-                  <div className="flex items-center gap-3">
-                    <Mail className="h-4 w-4 text-muted/60" />
-                    <span className="text-body text-foreground">Email digest</span>
+                    <span className="text-body text-foreground">Notifications</span>
                   </div>
                   <Switch defaultChecked />
                 </div>
@@ -134,8 +132,7 @@ export default function SettingsPage() {
               />
               <ListItem
                 icon={<Shield className="h-4 w-4" />}
-                title="Two-factor auth"
-                trailing={<Badge variant="success">On</Badge>}
+                title="Security"
                 showChevron
               />
               <ListItem
@@ -155,6 +152,7 @@ export default function SettingsPage() {
                 icon={<LogOut className="h-4 w-4" />}
                 title="Sign out"
                 destructive
+                onClick={handleSignOut}
               />
               <ListItem
                 icon={<Trash2 className="h-4 w-4" />}
@@ -165,9 +163,8 @@ export default function SettingsPage() {
           </Card>
         </section>
 
-        {/* Version */}
         <p className="text-center text-caption text-muted/40 pb-4">
-          {APP_CONFIG.name} v{APP_CONFIG.version}
+          Baseline v1.0.0
         </p>
       </div>
     </motion.div>

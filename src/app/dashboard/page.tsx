@@ -2,26 +2,25 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { PageHeader } from "@/components/layout/page-header";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ProgressBar } from "@/components/ui/progress-bar";
-import { ProjectCard } from "@/components/shared/project-card";
-import { ActivityItem } from "@/components/shared/activity-item";
+import { Badge } from "@/components/ui/badge";
 import { TaskRow } from "@/components/shared/task-row";
-import {
-  currentUser,
-  getActiveProjects,
-  getRecentActivity,
-  getRecentTasks,
-} from "@/data";
-import { getGreeting, formatDate } from "@/lib/format";
+import { LoadingScreen } from "@/components/ui/loading";
+import { EmptyState } from "@/components/ui/empty-state";
+import { useQuery } from "@/hooks/use-query";
+import { getProjects, getRecentTasks, getProfile } from "@/lib/supabase/queries";
+import { formatDate } from "@/lib/format";
 import {
   ArrowRight,
   Calendar,
+  FolderOpen,
+  Plus,
 } from "lucide-react";
 import Link from "next/link";
+import type { Project, Task } from "@/types/database";
 
 const container = {
   hidden: { opacity: 0 },
@@ -36,11 +35,26 @@ const item = {
   show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
 };
 
+function getGreeting(): string {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning";
+  if (hour < 17) return "Good afternoon";
+  return "Good evening";
+}
+
 export default function DashboardPage() {
-  const activeProjects = getActiveProjects();
-  const recentActivity = getRecentActivity(4);
-  const recentTasks = getRecentTasks(5).filter((t) => t.status !== "done");
+  const { data: profile } = useQuery(getProfile, []);
+  const { data: projects, loading: projectsLoading } = useQuery(getProjects, []);
+  const { data: tasks, loading: tasksLoading } = useQuery(() => getRecentTasks(5), []);
+
+  const loading = projectsLoading || tasksLoading;
+  const activeProjects = (projects ?? []).filter((p) => p.status === "active" || p.status === "review");
   const focusProject = activeProjects[0];
+  const firstName = profile?.name?.split(" ")[0] ?? "";
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <motion.div variants={container} initial="hidden" animate="show">
@@ -50,14 +64,14 @@ export default function DashboardPage() {
           {new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
         </p>
         <h1 className="text-heading-1 text-foreground">
-          {getGreeting()}, {currentUser.name.split(" ")[0]}
+          {getGreeting()}{firstName ? `, ${firstName}` : ""}
         </h1>
       </motion.header>
 
       <div className="px-5 md:px-8 space-y-16 pb-16">
 
-        {/* Focus Project — hero card */}
-        {focusProject && (
+        {/* Focus Project */}
+        {focusProject ? (
           <motion.section variants={item}>
             <Link href={`/detail?id=${focusProject.id}`}>
               <Card variant="interactive" padding="lg">
@@ -73,9 +87,11 @@ export default function DashboardPage() {
                   <h2 className="text-heading-2 text-foreground mb-2">
                     {focusProject.name}
                   </h2>
-                  <p className="text-body-sm text-muted/70 leading-relaxed max-w-md mb-6">
-                    {focusProject.description}
-                  </p>
+                  {focusProject.description && (
+                    <p className="text-body-sm text-muted/70 leading-relaxed max-w-md mb-6">
+                      {focusProject.description}
+                    </p>
+                  )}
 
                   <ProgressBar
                     value={focusProject.progress}
@@ -84,104 +100,110 @@ export default function DashboardPage() {
                     variant={focusProject.progress >= 80 ? "success" : "primary"}
                   />
 
-                  <div className="flex items-center gap-4 mt-6 pt-4 border-t border-border-subtle">
-                    <span className="text-caption text-muted/60">
-                      {focusProject.completedTasks} of {focusProject.taskCount} tasks
-                    </span>
-                    {focusProject.dueDate && (
+                  {focusProject.due_date && (
+                    <div className="flex items-center gap-4 mt-6 pt-4 border-t border-border-subtle">
                       <span className="flex items-center gap-1.5 text-caption text-muted/60">
                         <Calendar className="h-3 w-3" />
-                        {formatDate(focusProject.dueDate)}
+                        Due {formatDate(focusProject.due_date)}
                       </span>
-                    )}
-                    <span className="text-caption text-muted/60">
-                      {focusProject.members.length} members
-                    </span>
-                  </div>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </Link>
           </motion.section>
+        ) : (
+          <motion.section variants={item}>
+            <EmptyState
+              icon={<FolderOpen className="h-5 w-5" />}
+              title="No projects yet"
+              description="Create your first project to get started."
+              action={{ label: "New Project", onClick: () => {} }}
+            />
+          </motion.section>
         )}
 
-        {/* Stats — quiet inline numbers */}
+        {/* Tasks */}
         <motion.section variants={item}>
-          <div className="grid grid-cols-3 gap-3">
-            {[
-              { label: "Open tasks", value: "48", sub: "7 done today" },
-              { label: "Team online", value: "4", sub: "of 6 members" },
-              { label: "Sprint velocity", value: "94%", sub: "+12% vs last" },
-            ].map((stat) => (
-              <div key={stat.label} className="bg-surface border border-border-subtle rounded-xl p-4 md:p-5">
-                <p className="text-caption text-muted/60 mb-1">{stat.label}</p>
-                <p className="text-heading-3 text-foreground tabular-nums">{stat.value}</p>
-                <p className="text-caption text-success mt-1">{stat.sub}</p>
-              </div>
-            ))}
-          </div>
-        </motion.section>
-
-        {/* Two-column: Tasks + Activity */}
-        <div className="grid lg:grid-cols-3 gap-12 lg:gap-8">
-          {/* Tasks */}
-          <motion.section variants={item} className="lg:col-span-2">
-            <SectionHeader
-              title="My Tasks"
-              action={
-                <Button variant="ghost" size="sm">
-                  See all
-                  <ArrowRight className="h-3 w-3 ml-1" />
-                </Button>
-              }
-              className="mb-4"
-            />
+          <SectionHeader
+            title="My Tasks"
+            action={
+              <Button variant="ghost" size="sm">
+                See all
+                <ArrowRight className="h-3 w-3 ml-1" />
+              </Button>
+            }
+            className="mb-4"
+          />
+          {tasks && tasks.length > 0 ? (
             <Card variant="default" padding="sm">
               <CardContent>
-                {recentTasks.map((task) => (
+                {tasks.map((task) => (
                   <TaskRow key={task.id} task={task} />
                 ))}
               </CardContent>
             </Card>
-          </motion.section>
-
-          {/* Activity */}
-          <motion.section variants={item} className="lg:col-span-1">
-            <SectionHeader title="Activity" className="mb-4" />
-            <Card variant="default" padding="sm">
+          ) : (
+            <Card variant="subtle" padding="md">
               <CardContent>
-                {recentActivity.map((activity) => (
-                  <ActivityItem
-                    key={activity.id}
-                    activity={activity}
-                    compact
-                  />
-                ))}
+                <p className="text-body-sm text-muted/60 text-center py-6">
+                  No open tasks. You're all caught up.
+                </p>
               </CardContent>
             </Card>
-          </motion.section>
-        </div>
-
-        {/* Other Projects */}
-        <motion.section variants={item}>
-          <SectionHeader
-            title="Projects"
-            action={
-              <Link href="/search">
-                <Button variant="ghost" size="sm">
-                  All projects
-                  <ArrowRight className="h-3 w-3 ml-1" />
-                </Button>
-              </Link>
-            }
-            className="mb-4"
-          />
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {activeProjects.slice(1, 4).map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </div>
+          )}
         </motion.section>
 
+        {/* Projects grid */}
+        {activeProjects.length > 1 && (
+          <motion.section variants={item}>
+            <SectionHeader
+              title="Projects"
+              action={
+                <Link href="/search">
+                  <Button variant="ghost" size="sm">
+                    All projects
+                    <ArrowRight className="h-3 w-3 ml-1" />
+                  </Button>
+                </Link>
+              }
+              className="mb-4"
+            />
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {activeProjects.slice(1, 4).map((project) => (
+                <Link key={project.id} href={`/detail?id=${project.id}`}>
+                  <Card variant="interactive" padding="md" className="h-full">
+                    <CardContent>
+                      <div className="flex items-center gap-2.5 mb-3">
+                        <div
+                          className="w-2 h-2 rounded-full flex-shrink-0"
+                          style={{ backgroundColor: project.color }}
+                        />
+                        <h3 className="text-body font-medium text-foreground truncate flex-1">
+                          {project.name}
+                        </h3>
+                        <Badge variant={project.status === "active" ? "primary" : "accent"}>
+                          {project.status}
+                        </Badge>
+                      </div>
+                      {project.description && (
+                        <p className="text-body-sm text-muted/70 line-clamp-2 mb-5 leading-relaxed">
+                          {project.description}
+                        </p>
+                      )}
+                      <ProgressBar
+                        value={project.progress}
+                        size="sm"
+                        showLabel
+                        variant={project.progress >= 80 ? "success" : "primary"}
+                      />
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </motion.section>
+        )}
       </div>
     </motion.div>
   );

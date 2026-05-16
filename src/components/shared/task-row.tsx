@@ -2,19 +2,18 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Avatar } from "@/components/ui/avatar";
-import { Task } from "@/types";
-import { getUserById } from "@/data";
 import { CheckCircle2, Circle, Clock } from "lucide-react";
 
 interface TaskRowProps {
-  task: Task;
+  task: {
+    id: string;
+    title: string;
+    status: "todo" | "in-progress" | "review" | "done";
+  };
   className?: string;
 }
 
 export function TaskRow({ task, className }: TaskRowProps) {
-  const assignee = task.assigneeId ? getUserById(task.assigneeId) : undefined;
-
   const statusIcon = {
     "todo": <Circle className="h-[15px] w-[15px] text-muted/50" />,
     "in-progress": <Clock className="h-[15px] w-[15px] text-accent" />,
@@ -45,14 +44,6 @@ export function TaskRow({ task, className }: TaskRowProps) {
           {task.title}
         </p>
       </div>
-
-      {assignee && (
-        <Avatar
-          fallback={assignee.initials}
-          size="sm"
-          className="flex-shrink-0"
-        />
-      )}
     </div>
   );
 }
