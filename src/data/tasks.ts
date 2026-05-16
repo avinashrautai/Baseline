@@ -1,0 +1,200 @@
+import { Task } from "@/types";
+
+export const tasks: Task[] = [
+  // Design System tasks
+  {
+    id: "task_01",
+    title: "Define color palette and semantic tokens",
+    description: "Establish primary, secondary, and semantic color scales with light/dark mode support.",
+    status: "done",
+    priority: "high",
+    projectId: "proj_01",
+    assigneeId: "usr_02",
+    createdAt: "2024-03-12T09:00:00Z",
+    updatedAt: "2024-03-20T14:00:00Z",
+    tags: ["design", "tokens"],
+  },
+  {
+    id: "task_02",
+    title: "Typography scale and font selection",
+    description: "Define type hierarchy, line heights, and responsive sizing.",
+    status: "done",
+    priority: "high",
+    projectId: "proj_01",
+    assigneeId: "usr_02",
+    createdAt: "2024-03-14T09:00:00Z",
+    updatedAt: "2024-03-28T11:00:00Z",
+    tags: ["design", "typography"],
+  },
+  {
+    id: "task_03",
+    title: "Component inventory and audit",
+    description: "Catalog all existing components, identify gaps and inconsistencies.",
+    status: "done",
+    priority: "medium",
+    projectId: "proj_01",
+    assigneeId: "usr_04",
+    createdAt: "2024-03-20T09:00:00Z",
+    updatedAt: "2024-04-05T16:00:00Z",
+    tags: ["research", "audit"],
+  },
+  {
+    id: "task_04",
+    title: "Build button component variants",
+    description: "Primary, secondary, ghost, accent, danger, and link button styles with all sizes.",
+    status: "done",
+    priority: "high",
+    projectId: "proj_01",
+    assigneeId: "usr_05",
+    createdAt: "2024-04-01T09:00:00Z",
+    updatedAt: "2024-04-15T10:00:00Z",
+    tags: ["component", "development"],
+  },
+  {
+    id: "task_05",
+    title: "Card system with layout variants",
+    description: "Default, elevated, interactive, and subtle card variants with composable sub-components.",
+    status: "done",
+    priority: "high",
+    projectId: "proj_01",
+    assigneeId: "usr_05",
+    createdAt: "2024-04-10T09:00:00Z",
+    updatedAt: "2024-04-25T14:00:00Z",
+    tags: ["component", "development"],
+  },
+  {
+    id: "task_06",
+    title: "Icon system and guidelines",
+    description: "Standardize icon sizes, stroke widths, and usage patterns across the system.",
+    status: "in-progress",
+    priority: "medium",
+    projectId: "proj_01",
+    assigneeId: "usr_02",
+    createdAt: "2024-05-01T09:00:00Z",
+    updatedAt: "2024-06-10T11:00:00Z",
+    dueDate: "2024-06-20T00:00:00Z",
+    tags: ["design", "icons"],
+  },
+  {
+    id: "task_07",
+    title: "Motion and animation guidelines",
+    description: "Define timing curves, duration standards, and transition patterns.",
+    status: "in-progress",
+    priority: "medium",
+    projectId: "proj_01",
+    assigneeId: "usr_03",
+    createdAt: "2024-05-15T09:00:00Z",
+    updatedAt: "2024-06-12T09:00:00Z",
+    dueDate: "2024-06-25T00:00:00Z",
+    tags: ["motion", "guidelines"],
+  },
+  {
+    id: "task_08",
+    title: "Form components and validation patterns",
+    description: "Input, textarea, select, checkbox, radio, and form validation states.",
+    status: "todo",
+    priority: "high",
+    projectId: "proj_01",
+    assigneeId: "usr_05",
+    createdAt: "2024-06-01T09:00:00Z",
+    updatedAt: "2024-06-01T09:00:00Z",
+    dueDate: "2024-07-01T00:00:00Z",
+    tags: ["component", "forms"],
+  },
+  {
+    id: "task_09",
+    title: "Documentation and usage guidelines",
+    description: "Write component documentation with examples, dos/don'ts, and accessibility notes.",
+    status: "todo",
+    priority: "medium",
+    projectId: "proj_01",
+    assigneeId: "usr_04",
+    createdAt: "2024-06-05T09:00:00Z",
+    updatedAt: "2024-06-05T09:00:00Z",
+    dueDate: "2024-07-15T00:00:00Z",
+    tags: ["documentation"],
+  },
+  // Mobile App tasks
+  {
+    id: "task_10",
+    title: "Navigation architecture redesign",
+    description: "Rethink bottom navigation, tab structure, and deep linking patterns.",
+    status: "done",
+    priority: "high",
+    projectId: "proj_02",
+    assigneeId: "usr_04",
+    createdAt: "2024-04-01T09:00:00Z",
+    updatedAt: "2024-04-20T15:00:00Z",
+    tags: ["navigation", "architecture"],
+  },
+  {
+    id: "task_11",
+    title: "Gesture interactions and haptic feedback",
+    description: "Define swipe, long-press, and drag interactions with haptic response.",
+    status: "in-progress",
+    priority: "medium",
+    projectId: "proj_02",
+    assigneeId: "usr_03",
+    createdAt: "2024-05-01T09:00:00Z",
+    updatedAt: "2024-06-13T11:15:00Z",
+    dueDate: "2024-06-28T00:00:00Z",
+    tags: ["interaction", "mobile"],
+  },
+  {
+    id: "task_12",
+    title: "Performance optimization audit",
+    description: "Bundle analysis, lazy loading, and render optimization for core screens.",
+    status: "todo",
+    priority: "high",
+    projectId: "proj_02",
+    assigneeId: "usr_05",
+    createdAt: "2024-06-01T09:00:00Z",
+    updatedAt: "2024-06-01T09:00:00Z",
+    dueDate: "2024-07-10T00:00:00Z",
+    tags: ["performance", "optimization"],
+  },
+  // Analytics Dashboard tasks
+  {
+    id: "task_13",
+    title: "Chart component library integration",
+    description: "Evaluate and integrate charting library with custom theming.",
+    status: "done",
+    priority: "high",
+    projectId: "proj_03",
+    assigneeId: "usr_03",
+    createdAt: "2024-02-20T09:00:00Z",
+    updatedAt: "2024-03-15T14:00:00Z",
+    tags: ["charts", "integration"],
+  },
+  {
+    id: "task_14",
+    title: "Export functionality (CSV, PDF)",
+    description: "Allow users to export dashboard data in multiple formats.",
+    status: "review",
+    priority: "medium",
+    projectId: "proj_03",
+    assigneeId: "usr_06",
+    createdAt: "2024-05-20T09:00:00Z",
+    updatedAt: "2024-06-14T09:45:00Z",
+    dueDate: "2024-06-18T00:00:00Z",
+    tags: ["feature", "export"],
+  },
+];
+
+export function getTasksByProject(projectId: string): Task[] {
+  return tasks.filter((t) => t.projectId === projectId);
+}
+
+export function getTasksByStatus(status: Task["status"]): Task[] {
+  return tasks.filter((t) => t.status === status);
+}
+
+export function getTasksByAssignee(userId: string): Task[] {
+  return tasks.filter((t) => t.assigneeId === userId);
+}
+
+export function getRecentTasks(limit: number = 5): Task[] {
+  return [...tasks]
+    .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+    .slice(0, limit);
+}
